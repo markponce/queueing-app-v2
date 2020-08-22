@@ -8,6 +8,8 @@ const usersRouter = require('./routes/users');
 const servicesRouter = require('./routes/services');
 const queuesRouter = require('./routes/queues');
 const userSession = require('./routes/sessions');
+const countersRouter = require('./routes/counters');
+
 const mongoose = require('./db');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -38,10 +40,13 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
+app.use('/counters', countersRouter)
 app.use('/services', servicesRouter);
 app.use('/queues', queuesRouter);
-
 app.use('/userSession', userSession)
+
+
+
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

@@ -2,20 +2,20 @@ const { Schema } = require("mongoose")
 const mongoose = require("../db")
 const uniqueValidator = require('mongoose-unique-validator');
 
-const serviceSchema = new mongoose.Schema({
+const counterSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   description: { type: String, required: false },
   isActive: {
     type: Boolean, default: true
   }
-}, { 
-  timestamps: true 
+}, {
+  timestamps: true
 })
 
-serviceSchema.plugin(uniqueValidator)
+counterSchema.plugin(uniqueValidator)
 
-const Service = mongoose.model('Service', serviceSchema)
+const Counter = mongoose.model('Counter', counterSchema)
 module.exports = {
-  Service,
-  serviceSchema
+  Counter,
+  counterSchema
 }
