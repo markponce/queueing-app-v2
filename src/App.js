@@ -1,21 +1,36 @@
-import React, { useEffect, useState } from 'react';
-// import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-// import './App.css';
-// import './pages/Register'
-// import M from 'materialize-css/dist/js/materialize'
-// import Register from './pages/Register';
-// import Login from './pages/Login';
+import React from 'react';
 import Queues from './features/queues/Queues'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Board from './features/board/Board';
 
 function App() {
 
   return (
-    <div className="App">
-      {/* <Register/> */}
-      {/* <Login/> */}
-      <Queues />
-    </div>
+    <Router>
+      <div className="App">
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/board">Board</Link>
+          </li>
+        </ul>
+        <Switch>
+          <Route exact path="/">
+            <Queues />
+          </Route>
+          <Route path="/board">
+            <Board />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 
 }

@@ -3,8 +3,14 @@ import axios from 'axios';
 
 export const fetchQueues = createAsyncThunk('queues', async () => {
   const res = await axios.get('queues');
-  return await res.data;
+  // console.log(res.data)
+  return res.data;
 })
+
+// export const callQueue = createAsyncThunk('queues', async (id, counterId) => {
+//   const res = await axios.patch('queues/' + id);
+//   return res.data;
+// })
 
 export const queuesSlice = createSlice({
   name: 'queues',
@@ -19,21 +25,43 @@ export const queuesSlice = createSlice({
     }
   },
   extraReducers: {
+    // [callQueue.fulfilled]: (state, action) => {
+    //   state.status = 'success'
+    //   // state.queues = action.payload
+    //   // console.log('success')
+    // },
+    // [callQueue.rejected]: (state, action) => {
+    //   state.status = 'failed'
+    //   state.error = action.payload
+    //   // console.log('failed')
+    // },
     [fetchQueues.pending]: (state, action) => {
       state.status = 'loading'
-      console.log('loading')
+      // console.log('loading')
     },
     [fetchQueues.fulfilled]: (state, action) => {
       state.status = 'success'
       state.queues = action.payload
-      console.log('success')
+      // console.log('success')
     },
     [fetchQueues.rejected]: (state, action) => {
       state.status = 'failed'
-      console.log(action);
+      // console.log(action);
       state.error = action.payload
-      console.log('failed')
+      // console.log('failed')
     },
+
+    // [callQueue.pending]: (state, action) => {
+      // state.status = 'loading'
+      // console.log('loading')
+    // },
+
+    // [callQueue.rejected]: (state, action) => {
+      // state.status = 'failed'
+      // console.log(action);
+      // state.error = action.payload
+      // console.log('failed')
+    // },
   }
 });
 
