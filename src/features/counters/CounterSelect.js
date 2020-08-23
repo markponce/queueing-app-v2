@@ -6,8 +6,16 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 // import NativeSelect from '@material-ui/core/NativeSelect';
+// import {fetchQueues} from './../queues/queuesSlice'
 
-import { selectCounters, fetchCounters, setSelectedCounter } from './countersSlice';
+
+import {
+  selectCounters,
+  fetchCounters,
+  setSelectedCounter,
+  postSelectedCounter,
+  getSelectedCounter
+} from './countersSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -28,21 +36,20 @@ export default function CounterSelect() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchCounters())
-    // dispatch(fetchCounters());
-    // effect
-    // return () => {
-    //   cleanup
-    // }
-    // console.log(selectedCounter)
-  }, [counters])
+    let promise1 = dispatch(fetchCounters())
+    let promise2 = dispatch(getSelectedCounter())
+
+    return () => {
+      promise1.abort()
+      promise2.abort()
+    }
+  }, [])
 
 
   const handleChange = (e) => {
     e.preventDefault();
     const val = e.target.value
-    // console.log(val)
-    dispatch(setSelectedCounter(val))
+    let promise = dispatch(postSelectedCounter(val))
   }
 
   return (

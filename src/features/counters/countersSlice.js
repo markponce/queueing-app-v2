@@ -1,10 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchCounters = createAsyncThunk('counters', async () => {
+export const fetchCounters = createAsyncThunk('counters/fetchCounters', async () => {
   const res = await axios.get('counters');
   // console.log('countersSlice fetchCounters')
   // console.log(res.data)
+  return res.data;
+})
+
+export const postSelectedCounter = createAsyncThunk('counters/postSelectedCounter', async (selectedCounter) => {
+  const res = await axios.post('userSession/selectedCounter', {selectedCounter});
+  return res.data;
+})
+
+export const getSelectedCounter = createAsyncThunk('counters/getSelectedCounter', async () => {
+  const res = await axios.get('userSession/selectedCounter');
   return res.data;
 })
 
@@ -23,6 +33,30 @@ export const countersSlice = createSlice({
     },
   },
   extraReducers: {
+    [getSelectedCounter.pending]: (state, action) => {
+      state.status = 'loading'
+    },
+    [getSelectedCounter.fulfilled]: (state, action) => {
+      state.status = 'success'
+      state.selectedCounter = action.payload.selectedCounter
+    },
+    [getSelectedCounter.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.payload
+    },
+
+    [postSelectedCounter.pending]: (state, action) => {
+      state.status = 'loading'
+    },
+    [postSelectedCounter.fulfilled]: (state, action) => {
+      state.status = 'success'
+      state.selectedCounter = action.payload.selectedCounter
+    },
+    [postSelectedCounter.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.payload
+    },
+
     [fetchCounters.pending]: (state, action) => {
       state.status = 'loading'
       // console.log('loading')
@@ -41,7 +75,7 @@ export const countersSlice = createSlice({
   }
 });
 
-export const {setSelectedCounter} = countersSlice.actions;
+export const { setSelectedCounter } = countersSlice.actions;
 
 export const selectCounters = (state) => {
   // console.log('selectCounters');

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchQueues = createAsyncThunk('queues', async () => {
+export const fetchQueues = createAsyncThunk('queues/fetchQueues', async () => {
   const res = await axios.get('queues');
   // console.log(res.data)
   return res.data;

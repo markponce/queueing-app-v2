@@ -46,6 +46,17 @@ export default function Queues() {
     }
   }, [])
 
+  useEffect(() => {
+    console.log('useEffect selectedCounter')
+    let promise
+    promise = dispatch(fetchQueues());
+    return () => {
+      if (promise) {
+        promise.abort()
+      }
+    }
+  }, [selectedCounter])
+
   // 1: 'NORMAL',
   // 2: 'SENIOR',
   // 3: 'PWD',
@@ -158,8 +169,8 @@ export default function Queues() {
                     <TableCell align="center">{getServices(queue)}</TableCell>
                     <TableCell align="center">{showStatus(queue.status)}</TableCell>
                     <TableCell align="center">
-                      {queue.status === 0 && <Button variant="contained" color="primary" onClick={() => callQueue(queue.id)}>Call</Button>}
-                      {queue.status === 1 && <Button variant="contained" color="primary" onClick={() => doneQueue(queue.id)}>Done</Button>}
+                      {(queue.status === 0 && selectedCounter)  && <Button variant="contained" color="primary" onClick={() => callQueue(queue.id)}>Call</Button>}
+                      {(queue.status === 1 && selectedCounter) && <Button variant="contained" color="primary" onClick={() => doneQueue(queue.id)}>Done</Button>}
                     </TableCell>
                   </TableRow>
                 )
