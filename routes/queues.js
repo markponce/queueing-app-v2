@@ -8,8 +8,17 @@ let io = require('socket.io-client');
 router.get('/', async (req, res, next) => {
 
   try {
-    const services = await Queue.find({ status: { $in: [QueueStatus.CALLED, QueueStatus.QUEUED] } })
-      .sort({ isPriority: 'desc', createdAt: 'asc' });
+
+    let where = {
+      status: { $in: [QueueStatus.CALLED, QueueStatus.QUEUED] },
+    }
+
+    if (req.session.selectedCounter) {
+      where.counterId = { $in: [req.session.selectedCounter, null] }
+    }
+
+    // console.log(where);
+    const services = await Queue.find(where).sort({ isPriority: 'desc', createdAt: 'asc' });
 
     const test = services.map((service) => {
       return {
@@ -72,7 +81,7 @@ router.patch('/done/:queueId', async (req, res, next) => {
   }
 
   const queue = await Queue.findById(queueId).where('status').equals(QueueStatus.CALLED)
-  console.log(queue)
+  // console.log(queue)
   if (queue) {
     queue.status = QueueStatus.DONE
     queue.counterId = counterId

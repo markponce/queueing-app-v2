@@ -16,7 +16,7 @@ router.get('/queue', async (req, res, next) => {
       counterId: counters[i]._id,
       status: QueueStatus.CALLED,
     }).sort({
-      updatedAt: 'asc'
+      updatedAt: 'desc'
     }).select('isPriority ordinal')
 
     let queuetoJSON = {};
