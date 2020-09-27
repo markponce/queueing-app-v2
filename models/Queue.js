@@ -15,7 +15,7 @@ var servicesSchema = new Schema({
 
 
 const queueSchema = new mongoose.Schema({
-  customerName: { type: String, required: true },
+  customerName: { type: String },
   customerType: { type: Number },
   ordinal: { type: Number },
   services: [servicesSchema],
