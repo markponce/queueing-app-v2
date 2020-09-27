@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/stepOneFragment">
+
+    <fragment
+        android:id="@+id/stepOneFragment"
+        android:name="com.example.queueingapp.StepOneFragment"
+        android:label="fragment_step_one"
+        tools:layout="@layout/fragment_step_one" >
+        <action
+            android:id="@+id/action_stepOneFragment_to_stepTwoFragment"
+            app:destination="@id/stepTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stepTwoFragment"
+        android:name="com.example.queueingapp.StepTwoFragment"
+        android:label="fragment_step_two"
+        tools:layout="@layout/fragment_step_two" >
+        <action
+            android:id="@+id/action_stepTwoFragment_to_stepThreeFragment"
+            app:destination="@id/stepThreeFragment" />
+        <action
+            android:id="@+id/action_stepTwoFragment_to_stepOneFragment"
+            app:destination="@id/stepOneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stepThreeFragment"
+        android:name="com.example.queueingapp.StepThreeFragment"
+        android:label="fragment_step_three"
+        tools:layout="@layout/fragment_step_three" >
+        <action
+            android:id="@+id/action_stepThreeFragment_to_stepOneFragment"
+            app:destination="@id/stepOneFragment" />
+        <action
+            android:id="@+id/action_stepThreeFragment_to_stepTwoFragment"
+            app:destination="@id/stepTwoFragment" />
+        <action
+            android:id="@+id/action_stepThreeFragment_to_successFragment"
+            app:destination="@id/successFragment"
+            app:popUpTo="@id/stepOneFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.example.queueingapp.SuccessFragment"
+        android:label="success_fragment"
+        tools:layout="@layout/success_fragment" >
+        <argument
+            android:name="networkQueueResponse"
+            app:argType="com.example.queueingapp.network.NetworkQueueResponse" />
+        <action
+            android:id="@+id/action_successFragment_to_stepOneFragment"
+            app:destination="@id/stepOneFragment"
+            app:popUpTo="@id/stepOneFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+</navigation>
