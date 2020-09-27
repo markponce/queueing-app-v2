@@ -115,6 +115,10 @@ router.post('/', async (req, res, next) => {
     services
   } = req.body;
 
+  if(services.length <= 0 ) {
+    res.status(400).json({message:"Services is required."});
+  }
+
   // get ordinal number
   const isPriority = customerType > 1;
   const queueCount = await (await Queue.find({ isPriority })).length
