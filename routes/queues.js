@@ -107,7 +107,7 @@ router.patch('/done/:queueId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
 
-  // try {
+  try {
 
   const {
     customerName,
@@ -117,6 +117,7 @@ router.post('/', async (req, res, next) => {
 
   if(services.length <= 0 ) {
     res.status(400).json({message:"Services is required."});
+    return;
   }
 
   // get ordinal number
@@ -142,11 +143,11 @@ router.post('/', async (req, res, next) => {
 
   res.status(201).json({ queue });
 
-  // } catch (e) {
+  } catch (e) {
 
-  //   res.status(400).json(e);
+    res.status(400).json(e);
 
-  // }
+  }
 
 });
 
