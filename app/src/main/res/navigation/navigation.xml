@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/stepOneFragment"
-        android:name="com.example.queueingapp.StepOneFragment"
+        android:name="com.example.queueingapp.ui.StepOneFragment"
         android:label="fragment_step_one"
         tools:layout="@layout/fragment_step_one" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/stepTwoFragment"
-        android:name="com.example.queueingapp.StepTwoFragment"
+        android:name="com.example.queueingapp.ui.StepTwoFragment"
         android:label="fragment_step_two"
         tools:layout="@layout/fragment_step_two" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/stepThreeFragment"
-        android:name="com.example.queueingapp.StepThreeFragment"
+        android:name="com.example.queueingapp.ui.StepThreeFragment"
         android:label="fragment_step_three"
         tools:layout="@layout/fragment_step_three" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/successFragment"
-        android:name="com.example.queueingapp.SuccessFragment"
+        android:name="com.example.queueingapp.ui.SuccessFragment"
         android:label="success_fragment"
         tools:layout="@layout/success_fragment" >
         <argument

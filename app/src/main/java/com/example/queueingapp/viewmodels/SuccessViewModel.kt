@@ -1,11 +1,9 @@
-package com.example.queueingapp
+package com.example.queueingapp.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.queueingapp.domain.QueueService
 import com.example.queueingapp.network.NetworkQueueResponse
 import timber.log.Timber
 

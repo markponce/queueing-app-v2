@@ -1,6 +1,7 @@
 package com.example.queueingapp.network
 
 import android.os.Parcelable
+import com.example.queueingapp.database.DbQueueService
 import com.example.queueingapp.domain.QueueService
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -26,6 +27,17 @@ fun List<NetworkQueueingService>.asDomainModel(): List<QueueService> {
         )
     }
 }
+
+fun List<NetworkQueueingService>.asDBModel(): List<DbQueueService> {
+    return map{
+        DbQueueService(
+            id = it.id,
+            name = it.name,
+            description = it.description
+        )
+    }
+}
+
 
 @JsonClass(generateAdapter = true)
 data class PostDataQueue(

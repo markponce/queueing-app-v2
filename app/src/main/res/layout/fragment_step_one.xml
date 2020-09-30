@@ -19,13 +19,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.queueingapp.StepOneFragment">
+    tools:context="com.example.queueingapp.ui.StepOneFragment">
 
     <data>
 
         <variable
             name="queueViewModel"
-            type="com.example.queueingapp.QueueViewModel" />
+            type="com.example.queueingapp.viewmodels.QueueViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

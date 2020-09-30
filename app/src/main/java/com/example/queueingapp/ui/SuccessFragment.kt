@@ -1,4 +1,4 @@
-package com.example.queueingapp
+package com.example.queueingapp.ui
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.queueingapp.databinding.FragmentStepOneBinding
+import com.example.queueingapp.R
 import com.example.queueingapp.databinding.SuccessFragmentBinding
+import com.example.queueingapp.viewmodels.SuccessViewModel
 
 class SuccessFragment : Fragment() {
 
@@ -32,8 +32,9 @@ class SuccessFragment : Fragment() {
             container,
             false
         )
-        val networkQueueResponse = SuccessFragmentArgs.fromBundle(arguments!!).networkQueueResponse
-        viewModel = ViewModelProviders.of(this, SuccessViewModel.Factory(networkQueueResponse)).get(SuccessViewModel::class.java)
+        val networkQueueResponse = SuccessFragmentArgs.fromBundle(requireArguments()).networkQueueResponse
+        viewModel = ViewModelProviders.of(this, SuccessViewModel.Factory(networkQueueResponse)).get(
+            SuccessViewModel::class.java)
 
 //        binding.viewModel
         binding.viewModel = viewModel

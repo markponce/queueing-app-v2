@@ -3,17 +3,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.queueingapp.StepThreeFragment">
+    tools:context="com.example.queueingapp.ui.StepThreeFragment">
 
     <data>
 
-        <import type="com.example.queueingapp.QueueStatus" />
+        <import type="com.example.queueingapp.viewmodels.QueueStatus" />
 
         <import type="android.view.View" />
 
         <variable
             name="queueViewModel"
-            type="com.example.queueingapp.QueueViewModel" />
+            type="com.example.queueingapp.viewmodels.QueueViewModel" />
     </data>
 
     <FrameLayout

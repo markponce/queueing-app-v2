@@ -1,4 +1,4 @@
-package com.example.queueingapp
+package com.example.queueingapp.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,9 +11,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.queueingapp.databinding.FragmentStepOneBinding
+import com.example.queueingapp.R
+import com.example.queueingapp.ServicesAdapter
 import com.example.queueingapp.databinding.FragmentStepThreeBinding
 import com.example.queueingapp.domain.QueueService
+import com.example.queueingapp.viewmodels.QueueViewModel
+import com.example.queueingapp.viewmodels.ServicesStatus
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +33,14 @@ class StepThreeFragment : Fragment() {
 
 
     private lateinit var viewModel: QueueViewModel
+
+//    private val viewModel: QueueViewModel by lazy {
+//        val activity = requireNotNull(this.activity) {
+//            "You can only access the viewModel after onActivityCreated()"
+//        }
+//        ViewModelProvider(this, QueueViewModel.Factory(activity.application)).get(QueueViewModel::class.java)
+//    }
+
     private var toast: Toast? = null
 
     override fun onCreateView(
@@ -43,12 +54,16 @@ class StepThreeFragment : Fragment() {
             container,
             false
         )
-        viewModel = ViewModelProvider(this.requireActivity()).get(QueueViewModel::class.java)
+//        viewModel = ViewModelProvider(this.requireActivity()).get(QueueViewModel::class.java)
+
+        viewModel = ViewModelProvider(this.requireActivity(), QueueViewModel.Factory(this.requireActivity().application)).get(QueueViewModel::class.java)
+
         viewModel.servicesStatus.observe(this.viewLifecycleOwner, Observer {
             it?.let {
                 binding.swipeRefresh.isRefreshing = it == ServicesStatus.LOADING
             }
         })
+
         binding.queueViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.swipeRefresh.setOnRefreshListener {
