@@ -75,7 +75,7 @@
 
             <Button
                 android:id="@+id/btn_step_two"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -88,7 +88,6 @@
 
             <Button
                 android:id="@+id/btn_submit"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -108,8 +107,8 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:gravity="center"
-            tools:visibility="gone"
-            android:visibility="@{queueViewModel.queueStatus == QueueStatus.LOADING ? View.VISIBLE : View.GONE}">
+            android:visibility="@{queueViewModel.queueStatus == QueueStatus.LOADING ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
