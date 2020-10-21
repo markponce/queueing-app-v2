@@ -28,6 +28,7 @@ class SuccessFragment : Fragment() {
     ): View? {
 
         (activity as AppCompatActivity).supportActionBar?.title = "Queueing - Success"
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false);
 
 
         val binding = DataBindingUtil.inflate<SuccessFragmentBinding>(
