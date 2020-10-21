@@ -1,11 +1,12 @@
 package com.example.queueingapp.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.queueingapp.R
@@ -24,6 +25,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class StepOneFragment : Fragment() {
 
+
+
     private lateinit var viewModel: QueueViewModel
 
 //    private val viewModel: QueueViewModel by lazy {
@@ -37,6 +40,9 @@ class StepOneFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Queueing - Step 1/3"
+
 
         val binding = DataBindingUtil.inflate<FragmentStepOneBinding>(
             inflater,

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -37,12 +38,17 @@ class StepTwoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Queueing - Step 2/3"
+
         val binding = DataBindingUtil.inflate<FragmentStepTwoBinding>(
             inflater,
             R.layout.fragment_step_two,
             container,
             false
         )
+
+
 //        var args = StepTwoFragmentArgs.fromBundle(requireArguments())
 //        Toast.makeText(context, args.testArg, Toast.LENGTH_LONG).show()
 
@@ -69,6 +75,7 @@ class StepTwoFragment : Fragment() {
 
         binding.btnStepOne.setOnClickListener {
             findNavController().navigate(StepTwoFragmentDirections.actionStepTwoFragmentToStepOneFragment())
+//            requireActivity().onBackPressed();
         }
 
         binding.btnStepThree.setOnClickListener {
